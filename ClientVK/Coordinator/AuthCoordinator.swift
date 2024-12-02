@@ -22,5 +22,8 @@ final class AuthCoordinator: CoordinatorProtocol {
     private func showAuthModule() {
         let authViewController = ModuleFactory.createAuthModule()
         navigationController.pushViewController(authViewController, animated: true)
+        authViewController.viewModel?.completionHandler = { [weak self] in
+            self?.flowCompletionHandler?()
+        }
     }
 }

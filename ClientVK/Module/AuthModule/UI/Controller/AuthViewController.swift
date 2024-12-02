@@ -20,6 +20,18 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTarget()
+    }
+    
+    //MARK: Target
+    private func setupTarget() {
+        contentView.authButton.addTarget(self, action: #selector(authButtonTapped), for: .touchUpInside)
+    }
+}
 
+//MARK: OBJC
+extension AuthViewController {
+    @objc private func authButtonTapped() {
+        
     }
 }
