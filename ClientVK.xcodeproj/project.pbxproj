@@ -11,7 +11,15 @@
 		01BF65352CFDB68500437351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BF652D2CFDB68500437351 /* LaunchScreen.storyboard */; };
 		01BF65372CFDB68500437351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65292CFDB68500437351 /* AppDelegate.swift */; };
 		01BF65382CFDB68500437351 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65302CFDB68500437351 /* SceneDelegate.swift */; };
-		01BF65392CFDB68500437351 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65312CFDB68500437351 /* ViewController.swift */; };
+		01BF65472CFDDFF800437351 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65442CFDDFF800437351 /* AuthView.swift */; };
+		01BF65482CFDDFF800437351 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65452CFDDFF800437351 /* AuthViewController.swift */; };
+		01BF65492CFDDFF800437351 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65462CFDDFF800437351 /* AuthViewModel.swift */; };
+		01BF654C2CFDE04900437351 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF654B2CFDE04900437351 /* AppCoordinatorProtocol.swift */; };
+		01BF654E2CFDE07A00437351 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF654D2CFDE07A00437351 /* AppCoordinator.swift */; };
+		01BF65532CFDE0EB00437351 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65522CFDE0EB00437351 /* CoordinatorFactory.swift */; };
+		01BF65552CFDE1CA00437351 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65542CFDE1CA00437351 /* CoordinatorProtocol.swift */; };
+		01BF65572CFDE28800437351 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65562CFDE28800437351 /* AuthCoordinator.swift */; };
+		01BF65592CFDE3A500437351 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65582CFDE3A500437351 /* ModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +29,15 @@
 		01BF652B2CFDB68500437351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01BF652C2CFDB68500437351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01BF65302CFDB68500437351 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01BF65312CFDB68500437351 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01BF65442CFDDFF800437351 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		01BF65452CFDDFF800437351 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		01BF65462CFDDFF800437351 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		01BF654B2CFDE04900437351 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		01BF654D2CFDE07A00437351 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		01BF65522CFDE0EB00437351 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		01BF65542CFDE1CA00437351 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		01BF65562CFDE28800437351 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		01BF65582CFDE3A500437351 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				01BF653A2CFDB6DB00437351 /* Application */,
+				01BF653D2CFDBB0900437351 /* Coordinator */,
+				01BF654F2CFDE0A800437351 /* Factory */,
+				01BF653E2CFDBB2600437351 /* Module */,
 				01BF653B2CFDB6EC00437351 /* Resources */,
-				01BF65312CFDB68500437351 /* ViewController.swift */,
 			);
 			path = ClientVK;
 			sourceTree = "<group>";
@@ -78,6 +96,84 @@
 				01BF652D2CFDB68500437351 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		01BF653D2CFDBB0900437351 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				01BF654A2CFDE02E00437351 /* Protocol */,
+				01BF654D2CFDE07A00437351 /* AppCoordinator.swift */,
+				01BF65562CFDE28800437351 /* AuthCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		01BF653E2CFDBB2600437351 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				01BF653F2CFDBB3E00437351 /* AuthModule */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		01BF653F2CFDBB3E00437351 /* AuthModule */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65402CFDBB4E00437351 /* UI */,
+				01BF65432CFDDFE300437351 /* ViewModel */,
+			);
+			path = AuthModule;
+			sourceTree = "<group>";
+		};
+		01BF65402CFDBB4E00437351 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65452CFDDFF800437351 /* AuthViewController.swift */,
+				01BF65442CFDDFF800437351 /* AuthView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		01BF65432CFDDFE300437351 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65462CFDDFF800437351 /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01BF654A2CFDE02E00437351 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				01BF654B2CFDE04900437351 /* AppCoordinatorProtocol.swift */,
+				01BF65542CFDE1CA00437351 /* CoordinatorProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		01BF654F2CFDE0A800437351 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65512CFDE0DB00437351 /* Coordinator */,
+				01BF65502CFDE0C800437351 /* Module */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		01BF65502CFDE0C800437351 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65582CFDE3A500437351 /* ModuleFactory.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		01BF65512CFDE0DB00437351 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65522CFDE0EB00437351 /* CoordinatorFactory.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +249,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BF65572CFDE28800437351 /* AuthCoordinator.swift in Sources */,
 				01BF65372CFDB68500437351 /* AppDelegate.swift in Sources */,
+				01BF65472CFDDFF800437351 /* AuthView.swift in Sources */,
+				01BF654C2CFDE04900437351 /* AppCoordinatorProtocol.swift in Sources */,
+				01BF65482CFDDFF800437351 /* AuthViewController.swift in Sources */,
+				01BF65592CFDE3A500437351 /* ModuleFactory.swift in Sources */,
+				01BF65492CFDDFF800437351 /* AuthViewModel.swift in Sources */,
+				01BF65552CFDE1CA00437351 /* CoordinatorProtocol.swift in Sources */,
 				01BF65382CFDB68500437351 /* SceneDelegate.swift in Sources */,
-				01BF65392CFDB68500437351 /* ViewController.swift in Sources */,
+				01BF654E2CFDE07A00437351 /* AppCoordinator.swift in Sources */,
+				01BF65532CFDE0EB00437351 /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
