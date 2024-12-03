@@ -17,4 +17,9 @@ final class CoordinatorFactory {
         let authCoordinator = AuthCoordinator(navigationController: navigationController)
         return authCoordinator
     }
+    
+    static func createNewsFeedCoordinator(navigationController: UINavigationController) -> CoordinatorProtocol {
+        let newsFeedCoordinator = NewsFeedCoordinator(navigationController: navigationController)
+        return newsFeedCoordinator
+    }
 }

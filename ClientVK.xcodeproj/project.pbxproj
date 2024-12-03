@@ -24,6 +24,12 @@
 		01BF65642CFDEF5C00437351 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65632CFDEF5C00437351 /* AuthButton.swift */; };
 		01BF65662CFDF33900437351 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65652CFDF33900437351 /* Titles.swift */; };
 		01BF65682CFDFF3800437351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BF65672CFDFF3800437351 /* Assets.xcassets */; };
+		01BF656A2CFE014F00437351 /* NewsFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65692CFE014F00437351 /* NewsFeedCoordinator.swift */; };
+		01BF65732CFE028100437351 /* NewsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65722CFE028100437351 /* NewsFeedViewModel.swift */; };
+		01BF65742CFE028100437351 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65702CFE028100437351 /* NewsFeedView.swift */; };
+		01BF65752CFE028100437351 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65712CFE028100437351 /* NewsFeedViewController.swift */; };
+		01F38CA72CFEFCC200E47788 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CA62CFEFCC200E47788 /* PostCell.swift */; };
+		01F38CA92CFF112700E47788 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CA82CFF112700E47788 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,12 @@
 		01BF65632CFDEF5C00437351 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		01BF65652CFDF33900437351 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		01BF65672CFDFF3800437351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01BF65692CFE014F00437351 /* NewsFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCoordinator.swift; sourceTree = "<group>"; };
+		01BF65702CFE028100437351 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
+		01BF65712CFE028100437351 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
+		01BF65722CFE028100437351 /* NewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewModel.swift; sourceTree = "<group>"; };
+		01F38CA62CFEFCC200E47788 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		01F38CA82CFF112700E47788 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,7 @@
 				01BF654A2CFDE02E00437351 /* Protocol */,
 				01BF654D2CFDE07A00437351 /* AppCoordinator.swift */,
 				01BF65562CFDE28800437351 /* AuthCoordinator.swift */,
+				01BF65692CFE014F00437351 /* NewsFeedCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -121,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				01BF653F2CFDBB3E00437351 /* AuthModule */,
+				01BF656B2CFE024500437351 /* NewsFeedModule */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -189,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				01BF655B2CFDE6AD00437351 /* UIColor+Extension.swift */,
+				01F38CA82CFF112700E47788 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +241,49 @@
 				01BF65632CFDEF5C00437351 /* AuthButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		01BF656B2CFE024500437351 /* NewsFeedModule */ = {
+			isa = PBXGroup;
+			children = (
+				01BF656D2CFE026500437351 /* UI */,
+				01BF656C2CFE026100437351 /* ViewModel */,
+			);
+			path = NewsFeedModule;
+			sourceTree = "<group>";
+		};
+		01BF656C2CFE026100437351 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65722CFE028100437351 /* NewsFeedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01BF656D2CFE026500437351 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				01BF656F2CFE026C00437351 /* Controller */,
+				01BF656E2CFE026900437351 /* View */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		01BF656E2CFE026900437351 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65702CFE028100437351 /* NewsFeedView.swift */,
+				01F38CA62CFEFCC200E47788 /* PostCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01BF656F2CFE026C00437351 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01BF65712CFE028100437351 /* NewsFeedViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,18 +362,24 @@
 				01BF65572CFDE28800437351 /* AuthCoordinator.swift in Sources */,
 				01BF65642CFDEF5C00437351 /* AuthButton.swift in Sources */,
 				01BF65372CFDB68500437351 /* AppDelegate.swift in Sources */,
+				01BF65732CFE028100437351 /* NewsFeedViewModel.swift in Sources */,
+				01BF65742CFE028100437351 /* NewsFeedView.swift in Sources */,
+				01BF65752CFE028100437351 /* NewsFeedViewController.swift in Sources */,
 				01BF65472CFDDFF800437351 /* AuthView.swift in Sources */,
 				01BF65602CFDE93A00437351 /* AppColors.swift in Sources */,
 				01BF655C2CFDE6AD00437351 /* UIColor+Extension.swift in Sources */,
 				01BF654C2CFDE04900437351 /* AppCoordinatorProtocol.swift in Sources */,
 				01BF65482CFDDFF800437351 /* AuthViewController.swift in Sources */,
+				01F38CA92CFF112700E47788 /* Date+Extension.swift in Sources */,
 				01BF65592CFDE3A500437351 /* ModuleFactory.swift in Sources */,
+				01BF656A2CFE014F00437351 /* NewsFeedCoordinator.swift in Sources */,
 				01BF65662CFDF33900437351 /* Titles.swift in Sources */,
 				01BF65492CFDDFF800437351 /* AuthViewModel.swift in Sources */,
 				01BF65552CFDE1CA00437351 /* CoordinatorProtocol.swift in Sources */,
 				01BF65382CFDB68500437351 /* SceneDelegate.swift in Sources */,
 				01BF654E2CFDE07A00437351 /* AppCoordinator.swift in Sources */,
 				01BF65532CFDE0EB00437351 /* CoordinatorFactory.swift in Sources */,
+				01F38CA72CFEFCC200E47788 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

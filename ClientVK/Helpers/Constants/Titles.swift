@@ -8,5 +8,6 @@
 import Foundation
 
 struct Titles {
-    static let signIn = "Войти с VK ID"
+    static let signIn: String = "Войти с VK ID"
+    static let newsFeed: String = "Новостная лента"
 }

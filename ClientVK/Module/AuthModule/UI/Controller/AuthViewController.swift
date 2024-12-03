@@ -32,6 +32,6 @@ final class AuthViewController: UIViewController {
 //MARK: OBJC
 extension AuthViewController {
     @objc private func authButtonTapped() {
-        
+        viewModel?.authButtonWasPressed()
     }
 }

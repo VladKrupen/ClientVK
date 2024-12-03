@@ -14,4 +14,11 @@ final class ModuleFactory {
         authViewController.viewModel = authViewModel
         return authViewController
     }
+    
+    static func createNewsFeedModule() -> NewsFeedViewController {
+        let newsFeedViewController = NewsFeedViewController()
+        let newsFeedViewModel = NewsFeedViewModel()
+        newsFeedViewController.viewModel = newsFeedViewModel
+        return newsFeedViewController
+    }
 }

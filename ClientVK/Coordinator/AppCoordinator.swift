@@ -25,6 +25,13 @@ final class AppCoordinator: AppCoordinatorProtocol {
         authCoordinator.start()
         authCoordinator.flowCompletionHandler = { [weak self] in
             self?.childCoordinators.removeAll()
+            self?.showNewsFeedFlow()
         }
+    }
+    
+    private func showNewsFeedFlow() {
+        let newsFeedCoordinator = NewsFeedCoordinator(navigationController: navigationController)
+        childCoordinators.append(newsFeedCoordinator)
+        newsFeedCoordinator.start()
     }
 }
