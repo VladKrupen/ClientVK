@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsFeedView: UIView {
+final class NewsFeedView: BaseView {
     
     //MARK: UI
     let newsFeedTableView: UITableView = {
@@ -22,10 +22,6 @@ final class NewsFeedView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         layoutElements()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: Layout

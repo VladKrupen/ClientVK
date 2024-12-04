@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		016D7B722CFF7BC900923EF8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B712CFF7BC900923EF8 /* BaseViewController.swift */; };
+		016D7B742CFF80F600923EF8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B732CFF80F600923EF8 /* BaseView.swift */; };
+		016D7B772D00709400923EF8 /* OAuthParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B762D00709400923EF8 /* OAuthParameter.swift */; };
+		016D7B792D00754300923EF8 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B782D00754300923EF8 /* CustomError.swift */; };
+		016D7B7B2D0076FC00923EF8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B7A2D0076FC00923EF8 /* HTTPMethod.swift */; };
+		016D7B7E2D00795700923EF8 /* VKTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B7D2D00795700923EF8 /* VKTokenResponse.swift */; };
+		016D7B802D008D5800923EF8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D7B7F2D008D5800923EF8 /* UIViewController+Extension.swift */; };
 		01BF65352CFDB68500437351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BF652D2CFDB68500437351 /* LaunchScreen.storyboard */; };
 		01BF65372CFDB68500437351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65292CFDB68500437351 /* AppDelegate.swift */; };
 		01BF65382CFDB68500437351 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65302CFDB68500437351 /* SceneDelegate.swift */; };
@@ -21,7 +28,7 @@
 		01BF65592CFDE3A500437351 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65582CFDE3A500437351 /* ModuleFactory.swift */; };
 		01BF655C2CFDE6AD00437351 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF655B2CFDE6AD00437351 /* UIColor+Extension.swift */; };
 		01BF65602CFDE93A00437351 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF655F2CFDE93A00437351 /* AppColors.swift */; };
-		01BF65642CFDEF5C00437351 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65632CFDEF5C00437351 /* AuthButton.swift */; };
+		01BF65642CFDEF5C00437351 /* VKAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65632CFDEF5C00437351 /* VKAuthButton.swift */; };
 		01BF65662CFDF33900437351 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65652CFDF33900437351 /* Titles.swift */; };
 		01BF65682CFDFF3800437351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BF65672CFDFF3800437351 /* Assets.xcassets */; };
 		01BF656A2CFE014F00437351 /* NewsFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65692CFE014F00437351 /* NewsFeedCoordinator.swift */; };
@@ -30,9 +37,19 @@
 		01BF65752CFE028100437351 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF65712CFE028100437351 /* NewsFeedViewController.swift */; };
 		01F38CA72CFEFCC200E47788 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CA62CFEFCC200E47788 /* PostCell.swift */; };
 		01F38CA92CFF112700E47788 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CA82CFF112700E47788 /* Date+Extension.swift */; };
+		01F38CE22CFF57FD00E47788 /* VKAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CE12CFF57FD00E47788 /* VKAuthenticationManager.swift */; };
+		01F38CE42CFF607800E47788 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CE32CFF607800E47788 /* AuthProvider.swift */; };
+		01F38CE72CFF635200E47788 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F38CE62CFF635200E47788 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		016D7B712CFF7BC900923EF8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		016D7B732CFF80F600923EF8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		016D7B762D00709400923EF8 /* OAuthParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthParameter.swift; sourceTree = "<group>"; };
+		016D7B782D00754300923EF8 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		016D7B7A2D0076FC00923EF8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		016D7B7D2D00795700923EF8 /* VKTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKTokenResponse.swift; sourceTree = "<group>"; };
+		016D7B7F2D008D5800923EF8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		01BF65012CFDB62600437351 /* ClientVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClientVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01BF65292CFDB68500437351 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01BF652B2CFDB68500437351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,7 +66,7 @@
 		01BF65582CFDE3A500437351 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		01BF655B2CFDE6AD00437351 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		01BF655F2CFDE93A00437351 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
-		01BF65632CFDEF5C00437351 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		01BF65632CFDEF5C00437351 /* VKAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthButton.swift; sourceTree = "<group>"; };
 		01BF65652CFDF33900437351 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		01BF65672CFDFF3800437351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01BF65692CFE014F00437351 /* NewsFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCoordinator.swift; sourceTree = "<group>"; };
@@ -58,6 +75,9 @@
 		01BF65722CFE028100437351 /* NewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewModel.swift; sourceTree = "<group>"; };
 		01F38CA62CFEFCC200E47788 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		01F38CA82CFF112700E47788 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		01F38CE12CFF57FD00E47788 /* VKAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthenticationManager.swift; sourceTree = "<group>"; };
+		01F38CE32CFF607800E47788 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		01F38CE62CFF635200E47788 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +91,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		016D7B702CFF7B9A00923EF8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				016D7B752CFF820700923EF8 /* Base */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		016D7B752CFF820700923EF8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				016D7B712CFF7BC900923EF8 /* BaseViewController.swift */,
+				016D7B732CFF80F600923EF8 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		016D7B7C2D0078E900923EF8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				016D7B7D2D00795700923EF8 /* VKTokenResponse.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		01BF64F82CFDB62600437351 = {
 			isa = PBXGroup;
 			children = (
@@ -92,10 +137,13 @@
 			children = (
 				01BF653A2CFDB6DB00437351 /* Application */,
 				01BF653D2CFDBB0900437351 /* Coordinator */,
+				016D7B7C2D0078E900923EF8 /* Entity */,
 				01BF654F2CFDE0A800437351 /* Factory */,
 				01BF655D2CFDE90400437351 /* Helpers */,
+				01F38CE02CFF570500E47788 /* Manager */,
 				01BF653E2CFDBB2600437351 /* Module */,
 				01BF653B2CFDB6EC00437351 /* Resources */,
+				016D7B702CFF7B9A00923EF8 /* Shared */,
 			);
 			path = ClientVK;
 			sourceTree = "<group>";
@@ -142,6 +190,7 @@
 		01BF653F2CFDBB3E00437351 /* AuthModule */ = {
 			isa = PBXGroup;
 			children = (
+				01F38CE52CFF60B700E47788 /* Provider */,
 				01BF65402CFDBB4E00437351 /* UI */,
 				01BF65432CFDDFE300437351 /* ViewModel */,
 			);
@@ -204,6 +253,7 @@
 			children = (
 				01BF655B2CFDE6AD00437351 /* UIColor+Extension.swift */,
 				01F38CA82CFF112700E47788 /* Date+Extension.swift */,
+				016D7B7F2D008D5800923EF8 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +272,9 @@
 			children = (
 				01BF655F2CFDE93A00437351 /* AppColors.swift */,
 				01BF65652CFDF33900437351 /* Titles.swift */,
+				016D7B762D00709400923EF8 /* OAuthParameter.swift */,
+				016D7B782D00754300923EF8 /* CustomError.swift */,
+				016D7B7A2D0076FC00923EF8 /* HTTPMethod.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -238,7 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				01BF65442CFDDFF800437351 /* AuthView.swift */,
-				01BF65632CFDEF5C00437351 /* AuthButton.swift */,
+				01BF65632CFDEF5C00437351 /* VKAuthButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -284,6 +337,23 @@
 				01BF65712CFE028100437351 /* NewsFeedViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		01F38CE02CFF570500E47788 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				01F38CE62CFF635200E47788 /* AuthenticationManager.swift */,
+				01F38CE12CFF57FD00E47788 /* VKAuthenticationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		01F38CE52CFF60B700E47788 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				01F38CE32CFF607800E47788 /* AuthProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,7 +430,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				01BF65572CFDE28800437351 /* AuthCoordinator.swift in Sources */,
-				01BF65642CFDEF5C00437351 /* AuthButton.swift in Sources */,
+				016D7B742CFF80F600923EF8 /* BaseView.swift in Sources */,
+				01F38CE72CFF635200E47788 /* AuthenticationManager.swift in Sources */,
+				01BF65642CFDEF5C00437351 /* VKAuthButton.swift in Sources */,
 				01BF65372CFDB68500437351 /* AppDelegate.swift in Sources */,
 				01BF65732CFE028100437351 /* NewsFeedViewModel.swift in Sources */,
 				01BF65742CFE028100437351 /* NewsFeedView.swift in Sources */,
@@ -368,16 +440,24 @@
 				01BF65472CFDDFF800437351 /* AuthView.swift in Sources */,
 				01BF65602CFDE93A00437351 /* AppColors.swift in Sources */,
 				01BF655C2CFDE6AD00437351 /* UIColor+Extension.swift in Sources */,
+				016D7B802D008D5800923EF8 /* UIViewController+Extension.swift in Sources */,
 				01BF654C2CFDE04900437351 /* AppCoordinatorProtocol.swift in Sources */,
 				01BF65482CFDDFF800437351 /* AuthViewController.swift in Sources */,
 				01F38CA92CFF112700E47788 /* Date+Extension.swift in Sources */,
 				01BF65592CFDE3A500437351 /* ModuleFactory.swift in Sources */,
+				016D7B7E2D00795700923EF8 /* VKTokenResponse.swift in Sources */,
 				01BF656A2CFE014F00437351 /* NewsFeedCoordinator.swift in Sources */,
+				01F38CE42CFF607800E47788 /* AuthProvider.swift in Sources */,
+				016D7B7B2D0076FC00923EF8 /* HTTPMethod.swift in Sources */,
 				01BF65662CFDF33900437351 /* Titles.swift in Sources */,
+				016D7B772D00709400923EF8 /* OAuthParameter.swift in Sources */,
 				01BF65492CFDDFF800437351 /* AuthViewModel.swift in Sources */,
 				01BF65552CFDE1CA00437351 /* CoordinatorProtocol.swift in Sources */,
+				016D7B792D00754300923EF8 /* CustomError.swift in Sources */,
 				01BF65382CFDB68500437351 /* SceneDelegate.swift in Sources */,
+				016D7B722CFF7BC900923EF8 /* BaseViewController.swift in Sources */,
 				01BF654E2CFDE07A00437351 /* AppCoordinator.swift in Sources */,
+				01F38CE22CFF57FD00E47788 /* VKAuthenticationManager.swift in Sources */,
 				01BF65532CFDE0EB00437351 /* CoordinatorFactory.swift in Sources */,
 				01F38CA72CFEFCC200E47788 /* PostCell.swift in Sources */,
 			);
@@ -416,7 +496,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = VladKrupen.by.ClientVK;
+				PRODUCT_BUNDLE_IDENTIFIER = tms.by.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -443,7 +523,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = VladKrupen.by.ClientVK;
+				PRODUCT_BUNDLE_IDENTIFIER = tms.by.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

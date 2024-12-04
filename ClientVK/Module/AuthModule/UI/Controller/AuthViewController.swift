@@ -7,11 +7,17 @@
 
 import UIKit
 
-final class AuthViewController: UIViewController {
+final class AuthViewController: BaseViewController {
     
-    var viewModel: AuthViewModelProtocol?
+    let viewModel: AuthViewModelProtocol
     private let contentView = AuthView()
-
+    
+    //MARK: Init
+    init(viewModel: AuthViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
     //MARK: Life cycle
     override func loadView() {
         super.loadView()
@@ -25,13 +31,13 @@ final class AuthViewController: UIViewController {
     
     //MARK: Target
     private func setupTarget() {
-        contentView.authButton.addTarget(self, action: #selector(authButtonTapped), for: .touchUpInside)
+        contentView.vkAuthButton.addTarget(self, action: #selector(vkAuthButtonTapped), for: .touchUpInside)
     }
 }
 
 //MARK: OBJC
 extension AuthViewController {
-    @objc private func authButtonTapped() {
-        viewModel?.authButtonWasPressed()
+    @objc private func vkAuthButtonTapped() {
+        viewModel.vkAuthButtonWasPressed()
     }
 }

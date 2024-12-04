@@ -1,5 +1,5 @@
 //
-//  AuthButton.swift
+//  VKAuthButton.swift
 //  ClientVK
 //
 //  Created by Vlad on 2.12.24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AuthButton: UIButton {
+final class VKAuthButton: UIButton {
     
     //MARK: UI
     private let vkLogoImageView: UIImageView = {

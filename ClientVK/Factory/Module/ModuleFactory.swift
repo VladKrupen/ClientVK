@@ -8,17 +8,17 @@
 import Foundation
 
 final class ModuleFactory {
+    static let vkAuthManager = VKAuthenticationManager()
+    
     static func createAuthModule() -> AuthViewController {
-        let authViewController = AuthViewController()
-        let authViewModel = AuthViewModel()
-        authViewController.viewModel = authViewModel
+        let authViewModel = AuthViewModel(vkAuthManager: vkAuthManager)
+        let authViewController = AuthViewController(viewModel: authViewModel)
         return authViewController
     }
     
     static func createNewsFeedModule() -> NewsFeedViewController {
-        let newsFeedViewController = NewsFeedViewController()
         let newsFeedViewModel = NewsFeedViewModel()
-        newsFeedViewController.viewModel = newsFeedViewModel
+        let newsFeedViewController = NewsFeedViewController(viewModel: newsFeedViewModel)
         return newsFeedViewController
     }
 }

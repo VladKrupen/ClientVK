@@ -21,5 +21,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
     }
+        
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let url = URLContexts.first?.url
+        if let authViewController = getCurrentViewController() as? AuthViewController {
+            authViewController.viewModel.retrieveTokens(url: url)
+        }
+    }
+}
+
+extension SceneDelegate {
+    private func getCurrentViewController() -> UIViewController? {
+        guard let rootViewController = window?.rootViewController else { return nil }
+        if let navigationController = rootViewController as? UINavigationController {
+            return navigationController.visibleViewController
+        }
+        return rootViewController
+    }
 }
 

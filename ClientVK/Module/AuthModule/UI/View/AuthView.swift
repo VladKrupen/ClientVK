@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AuthView: UIView {
+final class AuthView: BaseView {
     
     //MARK: UI
     private let logoImageView: UIImageView = {
@@ -18,10 +18,10 @@ final class AuthView: UIView {
         return $0
     }(UIImageView())
     
-    let authButton: AuthButton = {
+    let vkAuthButton: VKAuthButton = {
         $0.layer.cornerRadius = 22
         return $0
-    }(AuthButton(type: .system))
+    }(VKAuthButton(type: .system))
     
     //MARK: Init
     override init(frame: CGRect) {
@@ -30,14 +30,10 @@ final class AuthView: UIView {
         layoutElements()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     //MARK: Layout
     private func layoutElements() {
         layoutLogoImageView()
-        layoutAuthButton()
+        layoutVKAuthButton()
     }
     
     private func layoutLogoImageView() {
@@ -52,15 +48,15 @@ final class AuthView: UIView {
         ])
     }
     
-    private func layoutAuthButton() {
-        addSubview(authButton)
+    private func layoutVKAuthButton() {
+        addSubview(vkAuthButton)
         
         NSLayoutConstraint.activate([
-            authButton.widthAnchor.constraint(equalToConstant: 203),
-            authButton.heightAnchor.constraint(equalToConstant: 44),
+            vkAuthButton.widthAnchor.constraint(equalToConstant: 203),
+            vkAuthButton.heightAnchor.constraint(equalToConstant: 44),
             
-            authButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            authButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+            vkAuthButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            vkAuthButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
         ])
     }
 }

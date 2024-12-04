@@ -22,7 +22,18 @@ final class AuthCoordinator: CoordinatorProtocol {
     private func showAuthModule() {
         let authViewController = ModuleFactory.createAuthModule()
         navigationController.pushViewController(authViewController, animated: true)
-        authViewController.viewModel?.completionHandler = { [weak self] in
+        authViewController.viewModel.authorizationHandler = { authProvider, authURL in
+            switch authProvider {
+            case .vk:
+                guard let authURL else { return }
+                guard UIApplication.shared.canOpenURL(authURL) else { return }
+                UIApplication.shared.open(authURL)
+            }
+        }
+        authViewController.viewModel.displayErrorAlertHandler = { error in
+            authViewController.presentErrorAlert(message: error.rawValue)
+        }
+        authViewController.viewModel.navigateTo = { [weak self] in
             self?.flowCompletionHandler?()
         }
     }

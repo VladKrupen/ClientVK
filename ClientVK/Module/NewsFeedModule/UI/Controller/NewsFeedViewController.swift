@@ -7,10 +7,16 @@
 
 import UIKit
 
-final class NewsFeedViewController: UIViewController {
+final class NewsFeedViewController: BaseViewController {
     
-    var viewModel: NewsFeedViewModelProtocol?
+    let viewModel: NewsFeedViewModelProtocol
     private let contentView = NewsFeedView()
+    
+    //MARK: Init
+    init(viewModel: NewsFeedViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init()
+    }
 
     //MARK: Life cycle
     override func loadView() {
