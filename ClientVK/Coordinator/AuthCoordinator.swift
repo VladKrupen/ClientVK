@@ -11,8 +11,11 @@ final class AuthCoordinator: CoordinatorProtocol {
     var flowCompletionHandler: (() -> Void)?
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    private let userAuthorization: UserAuthorization
+    
+    init(navigationController: UINavigationController, userAuthorization: UserAuthorization) {
         self.navigationController = navigationController
+        self.userAuthorization = userAuthorization
     }
     
     func start() {
@@ -30,10 +33,13 @@ final class AuthCoordinator: CoordinatorProtocol {
                 UIApplication.shared.open(authURL)
             }
         }
-        authViewController.viewModel.displayErrorAlertHandler = { error in
-            authViewController.presentErrorAlert(message: error.rawValue)
+        authViewController.viewModel.displayErrorAlertHandler = { [weak authViewController] error in
+            authViewController?.hideSpiner()
+            authViewController?.presentErrorAlert(message: error.rawValue)
         }
-        authViewController.viewModel.navigateTo = { [weak self] in
+        authViewController.viewModel.navigateTo = { [weak self, weak authViewController] in
+            self?.userAuthorization.isUserAuthorized = true
+            authViewController?.hideSpiner()
             self?.flowCompletionHandler?()
         }
     }

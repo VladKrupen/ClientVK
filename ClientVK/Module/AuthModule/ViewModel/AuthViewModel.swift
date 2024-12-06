@@ -23,22 +23,38 @@ final class AuthViewModel: AuthViewModelProtocol {
     
     private var cancellables: Set<AnyCancellable> = .init()
     
-    private let vkAuthManager: AuthenticationManager
+    private let authenticationManager: AuthenticationManager
+    private let tokenStorage: TokenStorage
     
-    init(vkAuthManager: AuthenticationManager) {
-        self.vkAuthManager = vkAuthManager
+    init(authenticationManager: AuthenticationManager, tokenStorage: TokenStorage) {
+        self.authenticationManager = authenticationManager
+        self.tokenStorage = tokenStorage
+    }
+    
+    private func saveTokens(vkToken: VKToken) {
+        tokenStorage.saveTokens(vkToken: vkToken)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.navigateTo?()
+                case .failure(let error):
+                    self?.displayErrorAlertHandler?(error)
+                }
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
     }
 }
 
 //MARK: AuthViewModelProtocol
 extension AuthViewModel {
     func vkAuthButtonWasPressed() {
-        let authURL = vkAuthManager.getAuthorizationUrl()
+        let authURL = authenticationManager.getAuthorizationUrl()
         authorizationHandler?(.vk, authURL)
     }
     
     func retrieveTokens(url: URL?) {
-        vkAuthManager.getTokens(url: url)
+        authenticationManager.getTokens(url: url)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
@@ -46,8 +62,8 @@ extension AuthViewModel {
                 case .failure(let error):
                     self?.displayErrorAlertHandler?(error)
                 }
-            } receiveValue: { tokenResponse in
-                print(tokenResponse.accessToken)
+            } receiveValue: { [weak self] tokens in
+                self?.saveTokens(vkToken: tokens)
             }
             .store(in: &cancellables)
     }

@@ -9,18 +9,24 @@ import UIKit
 
 final class AppCoordinator: AppCoordinatorProtocol {
     var navigationController: UINavigationController
+    private let userAuthorization: UserAuthorization
     private var childCoordinators: [CoordinatorProtocol] = .init()
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, userAuthorization: UserAuthorization) {
         self.navigationController = navigationController
+        self.userAuthorization = userAuthorization
     }
     
     func start() {
-        showAuthFlow()
+        if userAuthorization.isUserAuthorized {
+            showNewsFeedFlow()
+        } else {
+            showAuthFlow()
+        }
     }
     
     private func showAuthFlow() {
-        let authCoordinator = AuthCoordinator(navigationController: navigationController)
+        let authCoordinator = CoordinatorFactory.createAuthCoordinator(navigationController: navigationController)
         childCoordinators.append(authCoordinator)
         authCoordinator.start()
         authCoordinator.flowCompletionHandler = { [weak self] in
@@ -30,7 +36,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     
     private func showNewsFeedFlow() {
-        let newsFeedCoordinator = NewsFeedCoordinator(navigationController: navigationController)
+        let newsFeedCoordinator = CoordinatorFactory.createNewsFeedCoordinator(navigationController: navigationController)
         childCoordinators.append(newsFeedCoordinator)
         newsFeedCoordinator.start()
     }

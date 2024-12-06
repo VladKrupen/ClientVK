@@ -10,6 +10,7 @@ import CryptoKit
 import Combine
 
 final class VKAuthenticationManager {
+    private let authURLString: String = "https://id.vk.com/authorize"
     private let cliendId: String = "52791583"
     private let redirectUri: String = "vk52791583://vk.com/blank.html"
     private let state: String = "welcomeToClientVK"
@@ -41,16 +42,15 @@ final class VKAuthenticationManager {
             .replacingOccurrences(of: "=", with: "")
     }
     
-    private func exchangeCodeForTokens(code: String, deviceId: String) -> AnyPublisher<VKTokenResponse, CustomError> {
+    private func exchangeCodeForTokens(code: String, deviceId: String) -> AnyPublisher<VKToken, CustomError> {
         return Future { [weak self] promise in
             guard let self else { return }
             guard let tokenURL = URL(string: "https://id.vk.com/oauth2/auth") else {
                 promise(.failure(.invalidURL))
                 return
             }
-            
             var urlRequest = URLRequest(url: tokenURL)
-            urlRequest.httpMethod = "POST"
+            urlRequest.httpMethod = HTTPMethod.post
             let bodyParameters = "grant_type=authorization_code&redirect_uri=\(redirectUri)&client_id=\(cliendId)&device_id=\(deviceId)&state=\(state)&code_verifier=\(codeVerifier)&code=\(code)"
             urlRequest.httpBody = bodyParameters.data(using: .utf8)
             
@@ -59,9 +59,8 @@ final class VKAuthenticationManager {
                     promise(.failure(.invalidResponse))
                     return
                 }
-                
                 do {
-                    let tokenResponse = try JSONDecoder().decode(VKTokenResponse.self, from: data)
+                    let tokenResponse = try JSONDecoder().decode(VKToken.self, from: data)
                     promise(.success(tokenResponse))
                 } catch {
                     promise(.failure(.somethingWentWrong))
@@ -76,16 +75,25 @@ final class VKAuthenticationManager {
 //MARK: AuthManager
 extension VKAuthenticationManager: AuthenticationManager {
     func getAuthorizationUrl() -> URL? {
-        let authURLString: String = "https://id.vk.com/authorize?state=\(state)&response_type=code&code_challenge=\(codeChallenge)&code_challenge_method=S256&client_id=\(cliendId)&redirect_uri=\(redirectUri)&prompt=login&scope=phone%20email"
-        return URL(string: authURLString)
+        var urlComponents = URLComponents(string: authURLString)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "state", value: state),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "code_challenge", value: codeChallenge),
+            URLQueryItem(name: "code_challenge_method", value: "S256"),
+            URLQueryItem(name: "client_id", value: cliendId),
+            URLQueryItem(name: "redirect_uri", value: redirectUri),
+            URLQueryItem(name: "prompt", value: "login"),
+            URLQueryItem(name: "scope", value: "phone email")
+        ]
+        return urlComponents?.url
     }
     
-    func getTokens(url: URL?) -> AnyPublisher<VKTokenResponse, CustomError> {
+    func getTokens(url: URL?) -> AnyPublisher<VKToken, CustomError> {
         guard let url else {
             return Fail(error: CustomError.invalidURL)
                 .eraseToAnyPublisher()
         }
-        
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let state = urlComponents.queryItems?.first(where: { $0.name == OAuthParameter.state })?.value,
               let code = urlComponents.queryItems?.first(where: { $0.name == OAuthParameter.code })?.value,

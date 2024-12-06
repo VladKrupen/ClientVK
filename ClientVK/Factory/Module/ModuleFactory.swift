@@ -9,9 +9,11 @@ import Foundation
 
 final class ModuleFactory {
     static let vkAuthManager = VKAuthenticationManager()
+    static let keyChainManager = KeyChainManager()
     
     static func createAuthModule() -> AuthViewController {
-        let authViewModel = AuthViewModel(vkAuthManager: vkAuthManager)
+        let authViewModel = AuthViewModel(authenticationManager: vkAuthManager,
+                                          tokenStorage: keyChainManager)
         let authViewController = AuthViewController(viewModel: authViewModel)
         return authViewController
     }

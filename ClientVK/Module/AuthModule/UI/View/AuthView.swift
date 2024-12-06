@@ -23,6 +23,13 @@ final class AuthView: BaseView {
         return $0
     }(VKAuthButton(type: .system))
     
+    let spinerView: UIActivityIndicatorView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.style = .large
+        $0.hidesWhenStopped = true
+        return $0
+    }(UIActivityIndicatorView())
+    
     //MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +41,7 @@ final class AuthView: BaseView {
     private func layoutElements() {
         layoutLogoImageView()
         layoutVKAuthButton()
+        layoutSpinerView()
     }
     
     private func layoutLogoImageView() {
@@ -57,6 +65,15 @@ final class AuthView: BaseView {
             
             vkAuthButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             vkAuthButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+        ])
+    }
+    
+    private func layoutSpinerView() {
+        addSubview(spinerView)
+        
+        NSLayoutConstraint.activate([
+            spinerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinerView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
 }

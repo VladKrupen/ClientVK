@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let url = URLContexts.first?.url
         if let authViewController = getCurrentViewController() as? AuthViewController {
             authViewController.viewModel.retrieveTokens(url: url)
+            authViewController.showSpiner()
         }
     }
 }

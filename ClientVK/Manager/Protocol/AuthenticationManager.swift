@@ -10,5 +10,5 @@ import Combine
 
 protocol AuthenticationManager: AnyObject {
     func getAuthorizationUrl() -> URL?
-    func getTokens(url: URL?) -> AnyPublisher<VKTokenResponse, CustomError>
+    func getTokens(url: URL?) -> AnyPublisher<VKToken, CustomError>
 }

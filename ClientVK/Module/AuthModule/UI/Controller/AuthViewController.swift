@@ -29,6 +29,19 @@ final class AuthViewController: BaseViewController {
         setupTarget()
     }
     
+    //MARK: Spiner
+    func showSpiner() {
+        contentView.spinerView.startAnimating()
+        contentView.isUserInteractionEnabled = false
+        addOverlay()
+    }
+    
+    func hideSpiner() {
+        contentView.spinerView.stopAnimating()
+        contentView.isUserInteractionEnabled = true
+        removeOverlay()
+    }
+    
     //MARK: Target
     private func setupTarget() {
         contentView.vkAuthButton.addTarget(self, action: #selector(vkAuthButtonTapped), for: .touchUpInside)
