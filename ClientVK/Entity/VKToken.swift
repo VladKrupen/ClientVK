@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VKToken: Codable {
+struct VKToken: Codable, Token {
     let refreshToken, accessToken: String
     let userId: Int
 

@@ -37,9 +37,11 @@ final class AuthViewController: BaseViewController {
     }
     
     func hideSpiner() {
-        contentView.spinerView.stopAnimating()
-        contentView.isUserInteractionEnabled = true
-        removeOverlay()
+        DispatchQueue.main.async { [weak self] in
+            self?.contentView.spinerView.stopAnimating()
+            self?.contentView.isUserInteractionEnabled = true
+            self?.removeOverlay()
+        }
     }
     
     //MARK: Target

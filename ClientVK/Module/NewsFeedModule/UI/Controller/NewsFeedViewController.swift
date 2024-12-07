@@ -52,11 +52,14 @@ extension NewsFeedViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostCell.self), for: indexPath) as? PostCell else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         return cell
     }
 }
 
 //MARK: UITableViewDelegate
 extension NewsFeedViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.navigateToPostDetailModule()
+    }
 }

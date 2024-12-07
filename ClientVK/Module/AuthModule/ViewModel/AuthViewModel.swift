@@ -23,16 +23,22 @@ final class AuthViewModel: AuthViewModelProtocol {
     
     private var cancellables: Set<AnyCancellable> = .init()
     
-    private let authenticationManager: AuthenticationManager
+    private let appAuthorization: AppAuthorization
     private let tokenStorage: TokenStorage
     
-    init(authenticationManager: AuthenticationManager, tokenStorage: TokenStorage) {
-        self.authenticationManager = authenticationManager
+    init(appAuthorization: AppAuthorization, tokenStorage: TokenStorage) {
+        self.appAuthorization = appAuthorization
         self.tokenStorage = tokenStorage
+        setupDelegate()
+    }
+    
+    private func setupDelegate() {
+        appAuthorization.delegate = self
     }
     
     private func saveTokens(vkToken: VKToken) {
-        tokenStorage.saveTokens(vkToken: vkToken)
+        tokenStorage.saveVKToken(vkToken: vkToken)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
@@ -48,23 +54,27 @@ final class AuthViewModel: AuthViewModelProtocol {
 //MARK: AuthViewModelProtocol
 extension AuthViewModel {
     func vkAuthButtonWasPressed() {
-        let authURL = authenticationManager.getAuthorizationUrl()
-        authorizationHandler?(.vk, authURL)
+        Task {
+            do {
+                let token = try await self.appAuthorization.requestAuthorization(type: .vk)
+                self.saveTokens(vkToken: token as! VKToken)
+            } catch {
+                //TODO выводить ошибку
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func retrieveTokens(url: URL?) {
-        authenticationManager.getTokens(url: url)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
-                    return
-                case .failure(let error):
-                    self?.displayErrorAlertHandler?(error)
-                }
-            } receiveValue: { [weak self] tokens in
-                self?.saveTokens(vkToken: tokens)
-            }
-            .store(in: &cancellables)
+        guard let url else { return }
+        appAuthorization.handleVKAuthorizeURL(url: url)
+    }
+}
+
+extension AuthViewModel: AuthorizationClientDelegate {
+    func vkAuthorizationSafariURL(url: URL?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.authorizationHandler?(.vk, url)
+        }
     }
 }

@@ -17,31 +17,10 @@ final class PostCell: UITableViewCell {
         return $0
     }(UIView())
     
-    private let avatarImageView: UIImageView = {
+    private let headerPostView: HeaderPostView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 25
-        $0.backgroundColor = .white
         return $0
-    }(UIImageView())
-    
-    private let nameLabel: UILabel = {
-        $0.numberOfLines = 1
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
-        return $0
-    }(UILabel())
-    
-    private let dateLabel: UILabel = {
-        $0.numberOfLines = 1
-        $0.font = .systemFont(ofSize: 12, weight: .light)
-        return $0
-    }(UILabel())
-    
-    private let headerVStackView: UIStackView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.axis = .vertical
-        $0.alignment = .leading
-        return $0
-    }(UIStackView())
+    }(HeaderPostView())
     
     private let descriptionLabel: UILabel = {
         $0.numberOfLines = 2
@@ -76,8 +55,7 @@ final class PostCell: UITableViewCell {
     
     //MARK: Configure
     func configureCell() {
-        nameLabel.text = "Мир позитива"
-        dateLabel.text = Date().getCustomFormat()
+        headerPostView.configure(title: "Мир позитива", date: Date())
         descriptionLabel.text = "Мир позитива позитива Мир позитива позитива Мир позитива позитива Мир позитива позитива Мир позитива позитива Мир позитива позитива Мир позитива позитива"
         counterPhotoLabel.text = "10 фото"
     }
@@ -85,8 +63,7 @@ final class PostCell: UITableViewCell {
     //MARK: Layout
     private func layoutElements() {
         layoutDetailView()
-        layoutAvatarImageView()
-        layoutHeaderVStackView()
+        layoutHeaderPostView()
         layoutDetailsVStackView()
     }
     
@@ -101,26 +78,13 @@ final class PostCell: UITableViewCell {
         ])
     }
     
-    private func layoutAvatarImageView() {
-        detailView.addSubview(avatarImageView)
+    private func layoutHeaderPostView() {
+        detailView.addSubview(headerPostView)
         
         NSLayoutConstraint.activate([
-            avatarImageView.widthAnchor.constraint(equalToConstant: 50),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 50),
-            
-            avatarImageView.topAnchor.constraint(equalTo: detailView.topAnchor, constant: 10),
-            avatarImageView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor, constant: 10),
-        ])
-    }
-    
-    private func layoutHeaderVStackView() {
-        [nameLabel, dateLabel].forEach { headerVStackView.addArrangedSubview($0) }
-        detailView.addSubview(headerVStackView)
-        
-        NSLayoutConstraint.activate([
-            headerVStackView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10),
-            headerVStackView.trailingAnchor.constraint(lessThanOrEqualTo: detailView.trailingAnchor, constant: -10),
-            headerVStackView.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor)
+            headerPostView.topAnchor.constraint(equalTo: detailView.topAnchor, constant: 10),
+            headerPostView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor, constant: 10),
+            headerPostView.trailingAnchor.constraint(equalTo: detailView.trailingAnchor, constant: -10)
         ])
     }
     
@@ -129,7 +93,7 @@ final class PostCell: UITableViewCell {
         detailView.addSubview(detailsVStackView)
         
         NSLayoutConstraint.activate([
-            detailsVStackView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
+            detailsVStackView.topAnchor.constraint(equalTo: headerPostView.bottomAnchor, constant: 10),
             detailsVStackView.bottomAnchor.constraint(equalTo: detailView.bottomAnchor, constant: -10),
             detailsVStackView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor, constant: 10),
             detailsVStackView.trailingAnchor.constraint(lessThanOrEqualTo: detailView.trailingAnchor, constant: -10),

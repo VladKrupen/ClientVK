@@ -1,15 +1,20 @@
 //
-//  VKAuthenticationManager.swift
+//  VKAuthorizationClient.swift
 //  ClientVK
 //
-//  Created by Vlad on 3.12.24.
+//  Created by Vlad on 7.12.24.
 //
 
 import Foundation
 import CryptoKit
-import Combine
 
-final class VKAuthenticationManager {
+final class VKAuthorizationClient {
+    
+    enum Error: LocalizedError {
+        case invalidURL
+        case parseURLError
+    }
+    
     private let authURLString: String = "https://id.vk.com/authorize"
     private let cliendId: String = "52791583"
     private let redirectUri: String = "vk52791583://vk.com/blank.html"
@@ -17,9 +22,12 @@ final class VKAuthenticationManager {
     private var codeVerifier: String
     private var codeChallenge: String
     
-    init() {
+    private let networkingHTTPClient: NetworkingHTTPClient
+    
+    init(networkingHTTPClient: NetworkingHTTPClient) {
         self.codeVerifier = Self.generateCodeVerifier()
         self.codeChallenge = Self.createCodeChallenge(from: codeVerifier)
+        self.networkingHTTPClient = networkingHTTPClient
     }
     
     static private func generateCodeVerifier() -> String {
@@ -41,40 +49,11 @@ final class VKAuthenticationManager {
             .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: "=", with: "")
     }
-    
-    private func exchangeCodeForTokens(code: String, deviceId: String) -> AnyPublisher<VKToken, CustomError> {
-        return Future { [weak self] promise in
-            guard let self else { return }
-            guard let tokenURL = URL(string: "https://id.vk.com/oauth2/auth") else {
-                promise(.failure(.invalidURL))
-                return
-            }
-            var urlRequest = URLRequest(url: tokenURL)
-            urlRequest.httpMethod = HTTPMethod.post
-            let bodyParameters = "grant_type=authorization_code&redirect_uri=\(redirectUri)&client_id=\(cliendId)&device_id=\(deviceId)&state=\(state)&code_verifier=\(codeVerifier)&code=\(code)"
-            urlRequest.httpBody = bodyParameters.data(using: .utf8)
-            
-            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-                guard error == nil, let data = data else {
-                    promise(.failure(.invalidResponse))
-                    return
-                }
-                do {
-                    let tokenResponse = try JSONDecoder().decode(VKToken.self, from: data)
-                    promise(.success(tokenResponse))
-                } catch {
-                    promise(.failure(.somethingWentWrong))
-                }
-            }
-            .resume()
-        }
-        .eraseToAnyPublisher()
-    }
 }
 
-//MARK: AuthManager
-extension VKAuthenticationManager: AuthenticationManager {
-    func getAuthorizationUrl() -> URL? {
+//MARK: VKAuthorization
+extension VKAuthorizationClient: VKAuthorization {
+    func generateSafariAuthURL() -> URL? {
         var urlComponents = URLComponents(string: authURLString)
         urlComponents?.queryItems = [
             URLQueryItem(name: "state", value: state),
@@ -89,19 +68,39 @@ extension VKAuthenticationManager: AuthenticationManager {
         return urlComponents?.url
     }
     
-    func getTokens(url: URL?) -> AnyPublisher<VKToken, CustomError> {
+    func requestTokens(url: URL?) async throws -> VKToken {
         guard let url else {
-            return Fail(error: CustomError.invalidURL)
-                .eraseToAnyPublisher()
+            throw Error.invalidURL
         }
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let state = urlComponents.queryItems?.first(where: { $0.name == OAuthParameter.state })?.value,
               let code = urlComponents.queryItems?.first(where: { $0.name == OAuthParameter.code })?.value,
               let deviceId = urlComponents.queryItems?.first(where: { $0.name == OAuthParameter.deviceId })?.value,
               state == self.state else {
-            return Fail(error: CustomError.somethingWentWrong)
-                .eraseToAnyPublisher()
+            throw Error.parseURLError
         }
-        return exchangeCodeForTokens(code: code, deviceId: deviceId)
+        let postRequest = NetworkingPostRequest(urlString: "https://id.vk.com/oauth2/auth")
+        let bodyDictionary = [
+            "code": code,
+            "code_verifier": codeVerifier,
+            "client_id": cliendId,
+            "grant_type": "authorization_code",
+            "redirect_uri": redirectUri,
+            "state": state,
+            "device_id": deviceId
+        ]
+        let body = try JSONSerialization.data(withJSONObject: bodyDictionary)
+        postRequest.body = body
+        do {
+            let result = try await networkingHTTPClient.makeRequest(postRequest)
+            let error = ResponseErrorDecoder().decode(response: result.response, data: result.data)
+            guard error == nil else {
+                throw error!
+            }
+            let vkToken = try JSONDecoder().decode(VKToken.self, from: result.data)
+            return vkToken
+        } catch {
+            throw error
+        }
     }
 }

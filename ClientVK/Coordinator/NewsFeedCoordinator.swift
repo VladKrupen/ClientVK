@@ -22,5 +22,16 @@ final class NewsFeedCoordinator: CoordinatorProtocol {
     private func showNewsFeedModule() {
         let newsFeedViewController = ModuleFactory.createNewsFeedModule()
         navigationController.setViewControllers([newsFeedViewController], animated: true)
+        newsFeedViewController.viewModel.navigateTo = { [weak self] navigation in
+            switch navigation {
+            case .postDetails:
+                self?.showPostDetailsModule()
+            }
+        }
+    }
+    
+    private func showPostDetailsModule() {
+        let postDetailsViewController = ModuleFactory.createPostDetailsModule()
+        navigationController.pushViewController(postDetailsViewController, animated: true)
     }
 }
